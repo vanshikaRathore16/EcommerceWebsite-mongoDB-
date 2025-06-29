@@ -1,4 +1,4 @@
-import { createuser,authUser,verifyAccount} from "../controller/user.controller.js";
+import { createuser,authUser,verifyAccount,list} from "../controller/user.controller.js";
 import express from "express";
 import { body } from "express-validator";
 const router = express.Router();
@@ -13,4 +13,5 @@ router.post("/",
     createuser);
     router.post("/auth-user",authUser);
     router.post("/verification",verifyAccount);
+    router.get("/list",list);
 export default router;

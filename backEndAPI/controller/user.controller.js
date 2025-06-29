@@ -6,6 +6,17 @@ import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
+
+export const list = async(request,response,next)=>{
+
+try{
+    let result = await User.find();
+    result.password = undefined;
+    return response.status(200).json({message : result});
+}catch(err){
+   return response.status(500).json({err : "internal server error"});
+}}
+
 export const createuser = async(request,response,next)=>{
     const error = validationResult(request)
     try{
