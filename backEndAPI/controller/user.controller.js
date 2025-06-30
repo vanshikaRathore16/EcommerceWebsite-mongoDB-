@@ -7,6 +7,21 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
+export const createProfile = async(request,response,next)=>{
+  try{
+     let user = await User.findById(request.params.userId);
+     user.profile.imageName = request.file.filename;
+     user.profile.address = request.body.address;
+     user.name = request.body.name ?? user.name;
+     user.contact = request.body.contact ?? user.contact;
+    await user.save();
+     return response.status(200).json({message : "profile updated"});
+  }catch(err){
+    console.log(err);
+    return response.status(500).json({err : "internal server error"});
+  }
+}
+
 export const list = async(request,response,next)=>{
 
 try{

@@ -13,6 +13,7 @@ mongoose.connect(atlas_url)
    app.use(bodyParser.json());
    app.use(bodyParser.urlencoded({extended : true}));
    app.use(cookieParser());
+   app.use(express.static("public"));
    app.use("/user",user);
    app.use("/product",productRouter);
    app.listen(process.env.PORT,()=>{
