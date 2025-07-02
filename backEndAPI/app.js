@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import user  from "./router/user.router.js";
+import cart from "./router/cart.router.js";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser"
 import dotenv from "dotenv";
@@ -16,6 +17,7 @@ mongoose.connect(atlas_url)
    app.use(express.static("public"));
    app.use("/user",user);
    app.use("/product",productRouter);
+   app.use("/cart",cart);
    app.listen(process.env.PORT,()=>{
     console.log("server cannected to atlas")
    })
